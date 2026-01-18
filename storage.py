@@ -17,15 +17,20 @@ def load():
         if not os.path.exists(TASK_FILE):
             return []
         with open(TASK_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("Error, file not found")
+            data = json.load(f)
+            if not isinstance(data, list):
+                return []
+            return data
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("Error, file not found or invalid JSON")
+        return []
 
 
 def get_task(idx):
     tasks = load()
-    for task in tasks:
-        if task["id"] == idx:
-            return task
-    else:
+    if not isinstance(tasks, list):
         return None
+    for task in tasks:
+        if task.get("id") == idx:
+            return task
+    return None
