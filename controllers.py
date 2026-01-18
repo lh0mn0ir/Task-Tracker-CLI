@@ -22,10 +22,10 @@ def load():
         print("Error, file not found")
 
 
-def get_task(id_task):
-    data = load()
-    for task in data:
-        if task.get("id") == id_task:
+def get_task(idx):
+    tasks = load()
+    for task in tasks:
+        if task["id"] == idx:
             return task
     else:
         return None

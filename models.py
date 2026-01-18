@@ -5,7 +5,7 @@ from datetime import datetime
 DATA = controllers.load()
 
 class Task:
-    def __init__(self,  description, status):
+    def __init__(self,  description, status="todo"):
         self.id = len(DATA)+1
         self.description = description
         self.status = status
@@ -37,7 +37,7 @@ class Task:
                     task["updatedAt"] = datetime.now().strftime("%d/%m/%Y, %H:%M")
                     DATA[idx] = task
                     controllers.save(DATA)
-                    print("Sauvegarde éffectuée")
+                    print("Modifications éffectuées")
                     return True
             return False
 
@@ -46,3 +46,23 @@ class Task:
         for idx, task in enumerate(DATA):
             if task["id"] == id_task:
                 DATA.pop(idx)
+                controllers.save(DATA)
+                print("tâche supprimée")
+                return True
+        return False
+
+def change_status(id_task, status):
+    return Task.update_task(id_task, {"status":status})
+
+def list_all_task():
+    for task in DATA:
+        for key, value in task.items():
+            print(key, ":", value)
+        print()
+
+def filter_task_by(filter: str):
+    for task in DATA:
+        if task.get("status") == filter:
+            for key, value in task.items():
+                print(key, ":", value)
+            print()
