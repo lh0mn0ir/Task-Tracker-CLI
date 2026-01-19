@@ -15,9 +15,15 @@ Task Tracker est une application CLI simple pour gérer vos tâches quotidiennes
 
 ## Installation
 
-1. Clonez le dépôt ou copiez les fichiers dans un dossier local.
+1. Clonez le dépôt avec:
+```bash
+git clone https://github.com/lh0mn0ir/Task-Tracker-CLI.git
+```
 2. Assurez-vous d'avoir Python 3 installé.
-3. Placez-vous dans le dossier `task-tracker`.
+3. Placez-vous dans le dossier `task-tracker` avec:
+```bash
+cd task-tracker
+```
 
 ## Utilisation
 
